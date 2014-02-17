@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>508</width>
+    <height>274</height>
+   </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::TabFocus</enum>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Игра</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="gameres.qrc">
+    <normaloff>:/images/package_games.png</normaloff>:/images/package_games.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>150</y>
+      <width>511</width>
+      <height>126</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>1</number>
+     </property>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Продолжить</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Загрузить игру</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Новая игра</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Выход</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Настройки</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+   border: 2px solid rgb(85, 120, 107);
+   background: rgb(85, 170, 127);
+   color: rgb(170, 255, 0);
+   font-size: 14px;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:80px;
+   padding-right:80px;
+
+
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   border-radius:10px;
+}
+QPushButton:hover
+{
+    border: 1px solid rgb(0, 170, 255);
+	
+	color: rgb(0, 0, 0);
+}
+QPushButton:pressed
+{
+    background-color:rgb(0, 170, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Авторы</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>510</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/000005382478.jpg);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="gameres.qrc"/>
+ </resources>
+ <connections/>
+</ui>

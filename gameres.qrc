@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>package_games.png</file>
+        <file>city_skyline.png</file>
+        <file>000005382478.jpg</file>
+    </qresource>
+    <qresource prefix="/textures"/>
+</RCC>
