@@ -181,7 +181,10 @@ QPushButton:pressed
       </size>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::StrongFocus</enum>
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(10, 110, 255, 255), stop:0.482955 rgba(0, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));</string>
