@@ -10,7 +10,9 @@ class gamemodel
 {
 
 public:
+    texture_buffer * tex_buff;
     vector<building*> buildings;
+
     gamemodel();
 };
 

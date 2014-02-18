@@ -26,6 +26,8 @@ public slots:
 
 
 protected:
+
+
     glm::vec3 rot;
     glm::vec3 default_campos;
     glm::vec3 cursor;

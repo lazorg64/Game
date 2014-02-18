@@ -8,6 +8,8 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     cam_offset = glm::vec3(0,0,0);
     cursor = glm::vec3(0,0,0);
     default_campos = glm::vec3(5,5,5);
+
+
 }
 
 void OpenGLWidget::initializeGL()
@@ -22,8 +24,8 @@ void OpenGLWidget::initializeGL()
             glEnable(GL_LIGHT0);
             glEnable(GL_COLOR_MATERIAL);
     m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, "C:\\Users\\lazorg\\Documents\\QtProjects\\Game\\vertex.vert");
-    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, "C:\\Users\\lazorg\\Documents\\QtProjects\\Game\\frag.frag");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/vertex.vert");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/frag.frag");
     m_program->link();
     m_program->bind();
 
@@ -105,12 +107,12 @@ void OpenGLWidget::resizeGL(int width, int height)
 
 void OpenGLWidget::draw()
 {
-   // drawAxis();
-   // drawGrid();
+    drawAxis();
+    drawGrid();
 
     foreach (building * element, model->buildings) {
 
-        drawBuilding(element);
+        element->getmodel()->draw(element->getX(),element->getY());
     }
 
 
@@ -180,12 +182,12 @@ void OpenGLWidget::drawGrid()
 {
     glDisable(GL_TEXTURE_2D);
     glBegin(GL_LINES);
-        for(float i=-100;i<100;i+=0.5f)
+        for(float i=-100;i<100;i+=1)
         {
             glVertex3f( i,  -100,  0.0f);
             glVertex3f( i,  100,  0.0f);
         }
-        for(float i=-100;i<100;i+=0.5f)
+        for(float i=-100;i<100;i+=1)
         {
             glVertex3f( -100,  i,  0.0f);
             glVertex3f(  100,  i,  0.0f);
@@ -219,14 +221,21 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
 
     glm::vec3 norm = glm::vec3(0,0,1);
     glm::vec3 point = glm::vec3(0,0,0);
-    glm::vec3 eye = default_campos;
+    glm::vec3 eye = glm::vec3(5,5,5);
     float offset = 0;
 
     float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
 
     glm::vec3 coord;
     coord = eye + t*ray_wor;
-    cursor = coord;
+    //cursor = coord;
+
+    if(pe->button()==Qt::RightButton)
+    {
+        cout << "x = "<<coord.x<<" int = "<<(int)round(coord.x)<<endl;
+        cout << "y = "<<coord.y<<" int = "<<(int)round(coord.y)<<endl;
+    model->buildings.push_back(new building((int)round(coord.x),(int)round(coord.y),model->tex_buff));
+    }
 
     updateGL();
 

@@ -19,7 +19,10 @@ SOURCES += main.cpp\
     openglwidget.cpp \
     gamemodel.cpp \
     params.cpp \
-    building.cpp
+    building.cpp \
+    mesh.cpp \
+    texture.cpp \
+    texture_buffer.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -27,7 +30,10 @@ HEADERS  += mainwindow.h \
     openglwidget.h \
     gamemodel.h \
     params.h \
-    building.h
+    building.h \
+    mesh.h \
+    texture.h \
+    texture_buffer.h
 
 FORMS    += mainwindow.ui \
     settings.ui \

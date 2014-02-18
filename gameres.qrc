@@ -4,5 +4,13 @@
         <file>city_skyline.png</file>
         <file>000005382478.jpg</file>
     </qresource>
-    <qresource prefix="/textures"/>
+    <qresource prefix="/textures">
+        <file>brick_green.gif</file>
+        <file>brick_purple.gif</file>
+        <file>brick_white.gif</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file>vertex.vert</file>
+        <file>frag.frag</file>
+    </qresource>
 </RCC>
