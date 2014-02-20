@@ -205,9 +205,6 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
     float y=1.0f - (2.0f *ptrMouse.y())/(float)height();
     float z = 0;
 
-    //cout << "move" <<x << " "<< y<<endl;
-
-
     glm::vec3 ray_nds = glm::vec3 (x, y, z);
 
     glm::vec4 ray_clip = glm::vec4 (ray_nds.x,ray_nds.y, -1.0, 1.0);
@@ -233,15 +230,16 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
     eye2.z=0;
     glm::vec3 offset = glm::cross(eye,eye2);
 
+
     if(x>=0.9f)
     {
-        cam_offset+=offset*0.05f;
-        default_campos+=offset*0.05f;
+        cam_offset+=offset;
+        default_campos+=offset;
     }
     else if(x<=-0.9f)
     {
-        cam_offset-=offset*0.05f;
-        default_campos-=offset*0.05f;
+        cam_offset-=offset;
+        default_campos-=offset;
     }
 
     if(y>=0.9f)
