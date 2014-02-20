@@ -228,7 +228,8 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
 
     glm::vec3 eye2 = eye;
     eye2.z=0;
-    glm::vec3 offset = glm::cross(eye,eye2);
+    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+
 
 
     if(x>=0.9f)

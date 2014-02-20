@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     building.cpp \
     mesh.cpp \
     texture.cpp \
-    texture_buffer.cpp
+    texture_buffer.cpp \
+    select_building_widget.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -33,11 +34,13 @@ HEADERS  += mainwindow.h \
     building.h \
     mesh.h \
     texture.h \
-    texture_buffer.h
+    texture_buffer.h \
+    select_building_widget.h
 
 FORMS    += mainwindow.ui \
     settings.ui \
-    gamewindow.ui
+    gamewindow.ui \
+    select_building_widget.ui
 
 RESOURCES += \
     gameres.qrc

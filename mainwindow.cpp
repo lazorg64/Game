@@ -30,10 +30,7 @@ void MainWindow::on_pushButton_2_clicked()
     }
     else
     {
-        window->setFixedHeight(728);
-        window->setFixedWidth(1024);
         window->show();
-
     }
 
 this->hide();
