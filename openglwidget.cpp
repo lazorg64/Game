@@ -9,14 +9,25 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     cursor = glm::vec3(0,0,0);
     default_campos = glm::vec3(6,6,6);
     this->setMouseTracking(true);
-
+    currentBuilding = "none";
 
 }
 
+void OpenGLWidget::setState(string *input)
+{
+    state = input;
+}
 void OpenGLWidget::setModel(gamemodel *mod)
 {
     model = mod;
 }
+
+void OpenGLWidget::setCurrentBuilding(string input)
+{
+    currentBuilding = input;
+}
+
+
 
 void OpenGLWidget::initializeGL()
 {
@@ -52,7 +63,12 @@ void OpenGLWidget::initializeGL()
     textures->putTexture(new texture(new QImage(":/textures/crosshair.png"),"cross"));
     textures->putTexture(new texture(new QImage(":/textures/grad.jpg"),"grad"));
     textures->putTexture(new texture(new QImage(":/textures/road.jpg"),"road"));
+    textures->putTexture(new texture(new QImage(":/textures/arrow2.png"),"arrow"));
     glBindTexture(GL_TEXTURE_2D, textures->getTexture("beton"));
+
+
+    model->buildings.push_back(new CityHall(0,0));
+
 
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
@@ -70,7 +86,26 @@ void OpenGLWidget::setMatrix()
     m_program->setUniformValue(loc,QMVP);
 }
 
+void OpenGLWidget::drawCursor()
+{
 
+    float size = 0.8;
+    glBindTexture(GL_TEXTURE_2D, textures->getTexture("arrow"));
+    float x,y;
+    x =(int)round(cursor.x);
+    y =(int)round(cursor.y);
+    glBegin(GL_QUADS);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(x,y+size,size);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(x,y-size,size);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(x,y-size,0);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(x,y+size,0);
+    glEnd();
+
+}
 
 void OpenGLWidget::paintGL()
 {
@@ -118,6 +153,9 @@ void OpenGLWidget::draw()
     glVertex3f(cursor.x+size,cursor.y+size,0.01f);
     glEnd();
 
+    if(*state=="build")
+    drawCursor();
+
 }
 
 void OpenGLWidget::drawAxis()
@@ -141,13 +179,13 @@ void OpenGLWidget::drawGrid()
     glBegin(GL_LINES);
         for(float i=-100;i<100;i+=1)
         {
-            glVertex3f( i,  -100,  0.1f);
-            glVertex3f( i,  100,  0.1f);
+            glVertex3f( i,  -100,  0.01f);
+            glVertex3f( i,  100,  0.01f);
         }
         for(float i=-100;i<100;i+=1)
         {
-            glVertex3f( -100,  i,  0.1f);
-            glVertex3f(  100,  i,  0.1f);
+            glVertex3f( -100,  i,  0.01f);
+            glVertex3f(  100,  i,  0.01f);
         }
     glEnd();
 
@@ -236,11 +274,23 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
     float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
     glm::vec3 coord;
     coord = eye + t*ray_wor;
-    if(pe->button()==Qt::RightButton)
+
+    if(pe->button()==Qt::LeftButton)
     {
-        cout << "x = "<<coord.x<<" int = "<<(int)round(coord.x)<<endl;
-        cout << "y = "<<coord.y<<" int = "<<(int)round(coord.y)<<endl;
-    model->buildings.push_back(new CityHall((int)round(coord.x),(int)round(coord.y)));
+        if(*(state)=="build")
+        {
+            if(currentBuilding=="cityhall")
+                model->buildings.push_back(new CityHall((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="smallhouse")
+                model->buildings.push_back(new SmallHouse((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="factory")
+                model->buildings.push_back(new Factory((int)round(coord.x),(int)round(coord.y)));
+            else
+            {
+
+            }
+        *state = "default";
+        }
     }
     else
     model->selectBuildingByPos((int)round(coord.x),(int)round(coord.y));

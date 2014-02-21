@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     select_building_widget.cpp \
     buildings/cityhall.cpp \
     buildings/smallhouse.cpp \
-    gamemenu.cpp
+    gamemenu.cpp \
+    buildings/factory.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     select_building_widget.h \
     buildings/cityhall.h \
     buildings/smallhouse.h \
-    gamemenu.h
+    gamemenu.h \
+    buildings/factory.h
 
 FORMS    += mainwindow.ui \
     settings.ui \

@@ -20,17 +20,20 @@ class OpenGLWidget : public QGLWidget
 public:
     explicit OpenGLWidget(QWidget *parent = 0);
     void setModel(gamemodel * mod);
+    void setState(std::string * input);
+    void setCurrentBuilding(std::string input);
 signals:
 
 public slots:
 
 
 protected:
+    std::string currentBuilding;
     texture_buffer * textures;
     glm::vec3 rot;
     glm::vec3 default_campos;
     glm::vec3 cursor;
-
+    std::string * state;
     glm::vec3 cam_offset;
     QPoint ptrMouse;
     glm::mat4 Proj;
@@ -46,6 +49,7 @@ protected:
     void draw();
     void drawAxis();
     void drawGrid();
+    void drawCursor();
 
     void inter(glm::vec3 input);
 

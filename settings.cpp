@@ -47,7 +47,7 @@ void settings::getSettings()
     file->readLine(buff,128);
     string str(buff);
 
-    fs=(str.find("true")!=string::npos);
+    fs=(str.find("fs=true")!=string::npos);
     ui->checkBox->setChecked(fs);
     file->close();
 }

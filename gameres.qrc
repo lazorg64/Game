@@ -12,6 +12,12 @@
         <file>crosshair.png</file>
         <file>grad.jpg</file>
         <file>road.jpg</file>
+        <file>rfront.jpg</file>
+        <file>rwall.jpg</file>
+        <file>roof.jpg</file>
+        <file>arrow2.png</file>
+        <file>small_house.jpg</file>
+        <file>factory.jpg</file>
     </qresource>
     <qresource prefix="/shaders">
         <file>vertex.vert</file>

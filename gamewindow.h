@@ -12,17 +12,18 @@ class gamewindow : public QWidget
 {
     Q_OBJECT
     gamemodel * model;
-    std::string state;
+    std::string * state;
 public:
     explicit gamewindow(QWidget *parent = 0);
     ~gamewindow();
-    std::string getState();
-    void setState(std::string input);
+    std::string * getState();
+    void setState(std::string * input);
 
 private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void selectBuilding(std::string input);
+
 
 private:
     Ui::gamewindow *ui;

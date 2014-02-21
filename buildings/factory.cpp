@@ -1,24 +1,24 @@
-#include "smallhouse.h"
+#include "factory.h"
 
-SmallHouse::SmallHouse(int x,int y):building(x,y)
+Factory::Factory(int x,int y):building(x,y)
 {
     tex = new texture_buffer();
-    tex->putTexture(new texture(new QImage(":/textures/small_house.jpg"),"wall"));
+    tex->putTexture(new texture(new QImage(":/textures/factory.jpg"),"wall"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
 
 }
 
-void SmallHouse::draw()
+void Factory::draw()
 {
     float x,y;
     x=posx;
     y=posy;
-    float size = 0.25f;
+    float size = 0.3f;
     glm::vec3 a(x+size,y+size,0);
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
-    float height = 1.3f;
+    float height = 0.7f;
     glm::vec3 as(x+size,y+size,height);
     glm::vec3 bs(x-size,y+size,height);
     glm::vec3 cs(x-size,y-size,height);

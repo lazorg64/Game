@@ -8,14 +8,17 @@ gamewindow::gamewindow(QWidget *parent) :
     ui(new Ui::gamewindow)
 {
     ui->setupUi(this);
-    ui->gamewidget->setModel(new gamemodel());
+    model = new gamemodel();
+    ui->gamewidget->setModel(model);
+    state = new std::string("default");
+    ui->gamewidget->setState(state);
 }
 
-std::string gamewindow::getState()
+std::string * gamewindow::getState()
 {
     return state;
 }
-void gamewindow::setState(std::string input)
+void gamewindow::setState(std::string * input)
 {
     state = input;
 }
@@ -41,11 +44,19 @@ void gamewindow::on_pushButton_3_clicked()
     wid->show();
     wid->raise();
     connect(wid,SIGNAL(selectedBuilding(std::string)),this,SLOT(selectBuilding(std::string)));
+
     wid->move(width()/2-(wid->width()/2),height()/2-(wid->height()/2));
 
+
 }
+
+
 
 void gamewindow::selectBuilding(std::string input)
 {
     cout << "Building selected: "<<input << endl;
+    ui->gamewidget->setCurrentBuilding(input);
+    *state = "build";
 }
+
+

@@ -3,6 +3,7 @@
 
 #include <buildings/cityhall.h>
 #include <buildings/smallhouse.h>
+#include <buildings/factory.h>
 #include <vector>
 
 using namespace std;
