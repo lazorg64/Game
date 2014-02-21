@@ -4,6 +4,10 @@ SmallHouse::SmallHouse(int x,int y):building(x,y)
 {
     tex = new texture_buffer();
     tex->putTexture(new texture(new QImage(":/textures/brick_purple.gif"),"purple"));
+
+    glBindTexture(GL_TEXTURE_2D, tex->getTexture("purple"));
+
+
 }
 
 void SmallHouse::draw()
@@ -22,24 +26,7 @@ void SmallHouse::draw()
     glm::vec3 bs(x-size,y+size,height);
     glm::vec3 cs(x-size,y-size,height);
     glm::vec3 ds(x+size,y-size,height);
-
-    QImage *img;
-    img = tex->getTexture("purple");
-
-    if(img->isNull())
-        cout << "Null"<<endl;
-GLuint texids[2];
-    glGenTextures(2,texids);
-
-    glBindTexture(GL_TEXTURE_2D, texids[0]);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->width(),img->height(), 0, GL_RGBA, GL_UNSIGNED_BYTE,img->bits());
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D,tex->getTexture("purple"));
 
     glBegin(GL_QUADS);
     glTexCoord2f(1,1);

@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     texture_buffer.cpp \
     select_building_widget.cpp \
     buildings/cityhall.cpp \
-    buildings/smallhouse.cpp
+    buildings/smallhouse.cpp \
+    gamemenu.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -39,12 +40,14 @@ HEADERS  += mainwindow.h \
     texture_buffer.h \
     select_building_widget.h \
     buildings/cityhall.h \
-    buildings/smallhouse.h
+    buildings/smallhouse.h \
+    gamemenu.h
 
 FORMS    += mainwindow.ui \
     settings.ui \
     gamewindow.ui \
-    select_building_widget.ui
+    select_building_widget.ui \
+    gamemenu.ui
 
 RESOURCES += \
     gameres.qrc

@@ -19,15 +19,14 @@ class OpenGLWidget : public QGLWidget
     Q_OBJECT
 public:
     explicit OpenGLWidget(QWidget *parent = 0);
-
+    void setModel(gamemodel * mod);
 signals:
 
 public slots:
 
 
 protected:
-
-
+    texture_buffer * textures;
     glm::vec3 rot;
     glm::vec3 default_campos;
     glm::vec3 cursor;
@@ -43,7 +42,7 @@ protected:
     void paintGL();
     void resizeGL(int width, int height);
     void setMatrix();
-    void drawBuilding(building * input);
+
     void draw();
     void drawAxis();
     void drawGrid();

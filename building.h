@@ -8,6 +8,7 @@ class building
 protected:
     int posx,posy;
     texture_buffer * tex;
+    GLuint texids[5];
 public:
 
     building(int x,int y);

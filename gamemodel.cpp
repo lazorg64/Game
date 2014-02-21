@@ -2,10 +2,10 @@
 
 gamemodel::gamemodel()
 {
-    tex_buff = new texture_buffer();
-    tex_buff->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"green"));
-    tex_buff->putTexture(new texture(new QImage(":/textures/brick_purple.gif"),"purple"));
-    tex_buff->putTexture(new texture(new QImage(":/textures/brick_white.gif"),"white"));
+    //tex_buff = new texture_buffer();
+   // tex_buff->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"green"));
+   // tex_buff->putTexture(new texture(new QImage(":/textures/brick_purple.gif"),"purple"));
+    //tex_buff->putTexture(new texture(new QImage(":/textures/brick_white.gif"),"white"));
 
 /*
     buildings.push_back(new building(1,1,tex_buff));
@@ -18,4 +18,17 @@ gamemodel::gamemodel()
     buildings.push_back(new building(-1,-2,tex_buff));
 
 */
+}
+
+
+building * gamemodel::selectBuildingByPos(int x, int y)
+{
+    foreach (building * element, buildings) {
+        if(element->getX()==x&&element->getY()==y)
+        {
+            cout << "Selected!" <<endl;
+            return element;
+        }
+    }
+    return 0;
 }

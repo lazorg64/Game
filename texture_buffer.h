@@ -3,10 +3,11 @@
 #include "texture.h"
 class texture_buffer
 {
+    public:
     vector<texture*> textures;
-public:
+
     texture_buffer();
-    QImage * getTexture(string input);
+    GLuint getTexture(string input);
     void putTexture(texture * input);
 };
 

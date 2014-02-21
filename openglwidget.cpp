@@ -3,26 +3,33 @@
 OpenGLWidget::OpenGLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
-    model = new gamemodel();
+    model = 0;
     rot = glm::vec3(0,0,0);
     cam_offset = glm::vec3(0,0,0);
     cursor = glm::vec3(0,0,0);
-    default_campos = glm::vec3(5,5,5);
+    default_campos = glm::vec3(6,6,6);
     this->setMouseTracking(true);
 
+
+}
+
+void OpenGLWidget::setModel(gamemodel *mod)
+{
+    model = mod;
 }
 
 void OpenGLWidget::initializeGL()
 {
     glShadeModel(GL_SMOOTH);
-    glEnable(GL_BLEND);
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
     glDepthFunc(GL_LESS);
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glEnable(GL_LIGHTING);
-            glEnable(GL_LIGHT0);
-            glEnable(GL_COLOR_MATERIAL);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_COLOR_MATERIAL);
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/vertex.vert");
     m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/frag.frag");
@@ -40,10 +47,12 @@ void OpenGLWidget::initializeGL()
 
     srand(125);
     glEnable(GL_TEXTURE_2D);
-
-
-
-
+    textures = new texture_buffer();
+    textures->putTexture(new texture(new QImage(":/textures/beton.jpg"),"beton"));
+    textures->putTexture(new texture(new QImage(":/textures/crosshair.png"),"cross"));
+    textures->putTexture(new texture(new QImage(":/textures/grad.jpg"),"grad"));
+    textures->putTexture(new texture(new QImage(":/textures/road.jpg"),"road"));
+    glBindTexture(GL_TEXTURE_2D, textures->getTexture("beton"));
 
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
@@ -65,37 +74,15 @@ void OpenGLWidget::setMatrix()
 
 void OpenGLWidget::paintGL()
 {
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-    GLuint texid;
-
-    QPixmap pix;
-
-    QString path(":/images/package_games.png");
-    pix.load(path);
-
-
-
-    texid=bindTexture(pix,GL_TEXTURE_2D);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D,texid);
-
 
     float scale=0.1;
     glScalef(scale,scale,scale);
     glRotatef(30,1,0,1);
 
-
-    glColor4f(0,0,0,1);
+    glColor4f(0,0,0,0);
     draw();
-
 }
 
 void OpenGLWidget::resizeGL(int width, int height)
@@ -107,7 +94,7 @@ void OpenGLWidget::resizeGL(int width, int height)
 
 void OpenGLWidget::draw()
 {
-
+    glBindTexture(GL_TEXTURE_2D, textures->getTexture("grad"));
     drawAxis();
     drawGrid();
 
@@ -116,86 +103,78 @@ void OpenGLWidget::draw()
         element->draw();
     }
 
-
-    float size = 0.1;
-    glBegin(GL_QUADS);
-
-
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(cursor.x-size,cursor.y+size,0);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(cursor.x-size,cursor.y-size,0);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(cursor.x+size,cursor.y-size,0);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(cursor.x+size,cursor.y+size,0);
-    glEnd();
-
-
-
-
-
-}
-void OpenGLWidget::drawBuilding(building * input)
-{
-    float x,y;
-    x=(float)input->getX();
-    y=(float)input->getY();
     float size = 0.5;
+    glBindTexture(GL_TEXTURE_2D,textures->getTexture("cross"));
+    glColor4f(0,0,0,0);
     glBegin(GL_QUADS);
 
-
- glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(x,y,0);
     glTexCoord2f(0.0f, 1.0f);
-
-    glVertex3f(x+size,y,0);
+    glVertex3f(cursor.x-size,cursor.y+size,0.01f);
     glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(x+size,y+size,0);
+    glVertex3f(cursor.x-size,cursor.y-size,0.01f);
     glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(x,y+size,0);
-
-
-
-
+    glVertex3f(cursor.x+size,cursor.y-size,0.01f);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(cursor.x+size,cursor.y+size,0.01f);
     glEnd();
+
 }
+
 void OpenGLWidget::drawAxis()
 {
-glDisable(GL_TEXTURE_2D);
-    glLineWidth(1.0f);
+    glBindTexture(GL_TEXTURE_2D,textures->getTexture("grad"));
 
     glBegin(GL_LINES);
-    //glColor4f(1.00f, 0.00f, 0.00f, 1.0f);
-    glVertex3f( 100.0f,  0.0f,  0.0f);
-    glVertex3f(-100.0f,  0.0f,  0.0f);
-   // glColor4f(0.00f, 1.00f, 0.00f, 1.0f);
-    glVertex3f( 0.0f,  100.0f,  0.0f);
-    glVertex3f( 0.0f, -100.0f,  0.0f);
-   // glColor4f(0.00f, 0.00f, 1.00f, 1.0f);
+    glVertex3f( 100.0f,  0.0f,  0.1f);
+    glVertex3f(-100.0f,  0.0f,  0.1f);
+    glVertex3f( 0.0f,  100.0f,  0.1f);
+    glVertex3f( 0.0f, -100.0f,  0.1f);
     glVertex3f( 0.0f,  0.0f,  100.0f);
     glVertex3f( 0.0f,  0.0f, -100.0f);
     glEnd();
-glEnable(GL_TEXTURE_2D);
+
 }
 
 void OpenGLWidget::drawGrid()
 {
-    glDisable(GL_TEXTURE_2D);
+
     glBegin(GL_LINES);
         for(float i=-100;i<100;i+=1)
         {
-            glVertex3f( i,  -100,  0.0f);
-            glVertex3f( i,  100,  0.0f);
+            glVertex3f( i,  -100,  0.1f);
+            glVertex3f( i,  100,  0.1f);
         }
         for(float i=-100;i<100;i+=1)
         {
-            glVertex3f( -100,  i,  0.0f);
-            glVertex3f(  100,  i,  0.0f);
+            glVertex3f( -100,  i,  0.1f);
+            glVertex3f(  100,  i,  0.1f);
         }
     glEnd();
-    glEnable(GL_TEXTURE_2D);
+
+
+    glBindTexture(GL_TEXTURE_2D, textures->getTexture("beton"));
+    glBegin(GL_QUADS);
+    float size = 0.5;
+    for(int i=-10;i<10;i++)
+        for(int j=-10;j<10;j++)
+        {
+
+            glTexCoord2f(1,1);
+            glVertex3f(i+size,j+size,0);
+            glTexCoord2f(1,0);
+            glVertex3f(i-size,j+size,0);
+            glTexCoord2f(0,0);
+            glVertex3f(i-size,j-size,0);
+            glTexCoord2f(0,1);
+            glVertex3f(i+size,j-size,0);
+
+
+        }
+    glEnd();
+
 }
+
+
 
 void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
 {
@@ -263,6 +242,10 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
         cout << "y = "<<coord.y<<" int = "<<(int)round(coord.y)<<endl;
     model->buildings.push_back(new CityHall((int)round(coord.x),(int)round(coord.y)));
     }
+    else
+    model->selectBuildingByPos((int)round(coord.x),(int)round(coord.y));
+
+
     View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
 
     setMatrix();

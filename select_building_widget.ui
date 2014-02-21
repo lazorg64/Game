@@ -65,7 +65,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>40</y>
       <width>381</width>
       <height>261</height>
      </rect>
@@ -296,7 +296,7 @@
        <rect>
         <x>20</x>
         <y>180</y>
-        <width>91</width>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -309,8 +309,7 @@
    font-size: 14px;
    padding-top:10px;
    padding-bottom:10px;
-   padding-left:80px;
-   padding-right:80px;
+   
 
 
    font-family: helvetica, serif;
@@ -330,7 +329,7 @@ QPushButton:pressed
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Bar</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_2">
@@ -338,7 +337,7 @@ QPushButton:pressed
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>91</width>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -351,8 +350,7 @@ QPushButton:pressed
    font-size: 14px;
    padding-top:10px;
    padding-bottom:10px;
-   padding-left:80px;
-   padding-right:80px;
+   
 
 
    font-family: helvetica, serif;
@@ -372,7 +370,7 @@ QPushButton:pressed
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Small House</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton">
@@ -380,7 +378,7 @@ QPushButton:pressed
        <rect>
         <x>20</x>
         <y>82</y>
-        <width>91</width>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -393,8 +391,7 @@ QPushButton:pressed
    font-size: 14px;
    padding-top:10px;
    padding-bottom:10px;
-   padding-left:80px;
-   padding-right:80px;
+   
 
 
    font-family: helvetica, serif;
@@ -414,7 +411,7 @@ QPushButton:pressed
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Factory</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_3">
@@ -422,7 +419,7 @@ QPushButton:pressed
        <rect>
         <x>20</x>
         <y>130</y>
-        <width>91</width>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -435,8 +432,7 @@ QPushButton:pressed
    font-size: 14px;
    padding-top:10px;
    padding-bottom:10px;
-   padding-left:80px;
-   padding-right:80px;
+   
 
 
    font-family: helvetica, serif;
@@ -456,13 +452,13 @@ QPushButton:pressed
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Hospital</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Decorations">
      <attribute name="title">
-      <string>Decorations</string>
+      <string>Roads</string>
      </attribute>
     </widget>
    </widget>

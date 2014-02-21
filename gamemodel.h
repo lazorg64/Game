@@ -11,9 +11,9 @@ class gamemodel
 {
 
 public:
-    texture_buffer * tex_buff;
-    vector<building*> buildings;
 
+    vector<building*> buildings;
+    building * selectBuildingByPos(int x,int y);
     gamemodel();
 };
 
