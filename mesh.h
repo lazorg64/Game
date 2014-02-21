@@ -11,7 +11,6 @@ class mesh
     texture_buffer * tex;
     GLuint texids[5];
 public:
-
     mesh(texture_buffer * input);
     void draw(int x,int y);
 

@@ -1,7 +1,8 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
-#include <building.h>
+#include <buildings/cityhall.h>
+#include <buildings/smallhouse.h>
 #include <vector>
 
 using namespace std;

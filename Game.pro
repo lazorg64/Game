@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     mesh.cpp \
     texture.cpp \
     texture_buffer.cpp \
-    select_building_widget.cpp
+    select_building_widget.cpp \
+    buildings/cityhall.cpp \
+    buildings/smallhouse.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -35,7 +37,9 @@ HEADERS  += mainwindow.h \
     mesh.h \
     texture.h \
     texture_buffer.h \
-    select_building_widget.h
+    select_building_widget.h \
+    buildings/cityhall.h \
+    buildings/smallhouse.h
 
 FORMS    += mainwindow.ui \
     settings.ui \

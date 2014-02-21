@@ -5,11 +5,14 @@
 
 class building
 {
+protected:
     int posx,posy;
-    mesh * model;
+    texture_buffer * tex;
 public:
-    mesh * getmodel();
-    building(int x,int y,texture_buffer * input);
+
+    building(int x,int y);
+    virtual void draw() = 0;
+    //~building();
     int getX();
     int getY();
 

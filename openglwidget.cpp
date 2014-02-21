@@ -113,7 +113,7 @@ void OpenGLWidget::draw()
 
     foreach (building * element, model->buildings) {
 
-        element->getmodel()->draw(element->getX(),element->getY());
+        element->draw();
     }
 
 
@@ -229,8 +229,8 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
     glm::vec3 eye2 = eye;
     eye2.z=0;
     glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
-
-
+    glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
+    temp2.z = 0;
 
     if(x>=0.9f)
     {
@@ -245,33 +245,23 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
 
     if(y>=0.9f)
     {
-        cam_offset-=eye2*0.1f;
-        default_campos-=eye2*0.1f;
+        cam_offset-=temp2;
+        default_campos-=temp2;
     }
     else if(y<=-0.9f)
     {
-        cam_offset+=eye2*0.1f;
-        default_campos+=eye2*0.1f;
+        cam_offset+=temp2;
+        default_campos+=temp2;
     }
 
     float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
-
-/*
-
-    //cursor = coord;
-
-
-
-
-
-    */
     glm::vec3 coord;
     coord = eye + t*ray_wor;
     if(pe->button()==Qt::RightButton)
     {
         cout << "x = "<<coord.x<<" int = "<<(int)round(coord.x)<<endl;
         cout << "y = "<<coord.y<<" int = "<<(int)round(coord.y)<<endl;
-    model->buildings.push_back(new building((int)round(coord.x),(int)round(coord.y),model->tex_buff));
+    model->buildings.push_back(new CityHall((int)round(coord.x),(int)round(coord.y)));
     }
     View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
 
@@ -340,19 +330,6 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* pe)
     glm::vec3 coord;
     coord = eye + t*ray_wor;
     cursor = coord;
-    //cam_offset = coord*0.5f;
-
-    /*
-
-    if(x>=0.9f)
-        cam_offset.x-=0.1f;
-    else if(x<=-0.9f)
-        cam_offset.x+=0.1f;
-
-*/
-
-
-
 
     View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
 
