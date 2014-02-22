@@ -12,6 +12,7 @@ gamewindow::gamewindow(QWidget *parent) :
     ui->gamewidget->setModel(model);
     state = new std::string("default");
     ui->gamewidget->setState(state);
+    ui->gamewidget->setFocus();
 }
 
 std::string * gamewindow::getState()

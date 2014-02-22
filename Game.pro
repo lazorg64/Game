@@ -20,7 +20,6 @@ SOURCES += main.cpp\
     gamemodel.cpp \
     params.cpp \
     building.cpp \
-    mesh.cpp \
     texture.cpp \
     texture_buffer.cpp \
     select_building_widget.cpp \
@@ -36,7 +35,6 @@ HEADERS  += mainwindow.h \
     gamemodel.h \
     params.h \
     building.h \
-    mesh.h \
     texture.h \
     texture_buffer.h \
     select_building_widget.h \

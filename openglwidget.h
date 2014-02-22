@@ -56,6 +56,7 @@ protected:
     void mousePressEvent(QMouseEvent* pe);
     void mouseReleaseEvent(QMouseEvent* pe);
     void mouseMoveEvent(QMouseEvent* pe);
+    void keyPressEvent(QKeyEvent* pe);
 };
 
 #endif // OPENGLWIDGET_H

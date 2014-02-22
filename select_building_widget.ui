@@ -64,10 +64,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>381</width>
-      <height>261</height>
+      <x>-10</x>
+      <y>20</y>
+      <width>431</width>
+      <height>301</height>
      </rect>
     </property>
     <property name="palette">
@@ -506,8 +506,8 @@ QPushButton:pressed
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
+      <x>340</x>
+      <y>0</y>
       <width>61</width>
       <height>31</height>
      </rect>

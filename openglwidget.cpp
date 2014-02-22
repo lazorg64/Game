@@ -375,3 +375,41 @@ void OpenGLWidget::mouseReleaseEvent(QMouseEvent *)
 
 }
 
+
+void OpenGLWidget::keyPressEvent(QKeyEvent* pe)
+{
+    cout << "KEY" <<endl;
+    glm::vec3 eye = default_campos;
+    glm::vec3 eye2 = eye;
+    eye2.z=0;
+    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+    glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
+    temp2.z = 0;
+
+
+    switch (pe->key()){
+        case Qt::Key_W:
+        cam_offset-=temp2;
+        default_campos-=temp2;
+        break;
+        case Qt::Key_S:
+        cam_offset+=temp2;
+        default_campos+=temp2;
+        break;
+        case Qt::Key_A:
+        cam_offset-=offset;
+        default_campos-=offset;
+        break;
+        case Qt::Key_D:
+        cam_offset+=offset;
+        default_campos+=offset;
+        break;
+
+    }
+    View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
+
+    setMatrix();
+    updateGL();
+}
+
+
