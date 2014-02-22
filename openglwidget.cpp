@@ -285,6 +285,8 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
                 model->buildings.push_back(new SmallHouse((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="factory")
                 model->buildings.push_back(new Factory((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="bar")
+                model->buildings.push_back(new Bar((int)round(coord.x),(int)round(coord.y)));
             else
             {
 

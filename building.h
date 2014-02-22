@@ -2,7 +2,6 @@
 #define BUILDING_H
 
 #include "mesh.h"
-
 class building
 {
 protected:
