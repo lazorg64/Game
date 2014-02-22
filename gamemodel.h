@@ -4,6 +4,7 @@
 #include <buildings/cityhall.h>
 #include <buildings/smallhouse.h>
 #include <buildings/factory.h>
+#include <buildings/bar.h>
 #include <vector>
 
 using namespace std;
