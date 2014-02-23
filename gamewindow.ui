@@ -70,6 +70,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_4">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
         <string notr="true">
 
@@ -104,6 +107,9 @@ QPushButton:pressed
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
         <string notr="true">
 
@@ -138,6 +144,9 @@ QPushButton:pressed
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
         <string notr="true">
 

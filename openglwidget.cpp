@@ -9,6 +9,9 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     cursor = glm::vec3(0,0,0);
     default_campos = glm::vec3(6,6,6);
     currentBuilding = "none";
+    this->raise();
+    this->setFocusPolicy(Qt::StrongFocus);
+
 }
 
 void OpenGLWidget::setState(string *input)
@@ -246,11 +249,10 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
 
     glm::vec3 norm = glm::vec3(0,0,1);
     glm::vec3 point = glm::vec3(0,0,0);
-    glm::vec3 eye = default_campos;
+    glm::vec3 vector1 = default_campos-cam_offset;
+    glm::vec3 vector2 = glm::vec3(vector1.x,vector1.y,0);
 
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+    glm::vec3 offset = glm::normalize(glm::cross(vector1,vector2));
     glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
     temp2.z = 0;
 
@@ -276,9 +278,8 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
         default_campos+=temp2;
     }
 
-    float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
-    glm::vec3 coord;
-    coord = eye + t*ray_wor;
+    float t = glm::dot((point - default_campos ),norm)/glm::dot(ray_wor,norm);
+    glm::vec3 coord= default_campos + t*ray_wor;
 
     if(pe->button()==Qt::LeftButton)
     {
@@ -368,24 +369,17 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* pe)
 
     glm::vec3 norm = glm::vec3(0,0,1);
     glm::vec3 point = glm::vec3(0,0,0);
-    glm::vec3 eye = default_campos;
-
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::cross(eye,eye2);
+    glm::vec3 vector1 = default_campos-cam_offset;
+    glm::vec3 vector2 = glm::vec3(vector1.x,vector1.y,0);
+    glm::vec3 offset = glm::cross(vector1,vector2);
 
 
-
-
-
-
-    float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
-
-    glm::vec3 coord;
-    coord = eye + t*ray_wor;
+    float t = glm::dot((point - default_campos ),norm)/glm::dot(ray_wor,norm);
+    glm::vec3 coord  = default_campos + t*ray_wor;
     cursor = coord;
 
     View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
+
 
     setMatrix();
     updateGL();
@@ -399,11 +393,11 @@ void OpenGLWidget::mouseReleaseEvent(QMouseEvent *)
 
 void OpenGLWidget::keyPressEvent(QKeyEvent* pe)
 {
-    cout << "KEY" <<endl;
-    glm::vec3 eye = default_campos;
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+
+    glm::vec3 vector1 = default_campos-cam_offset;
+    glm::vec3 vector2 = glm::vec3(vector1.x,vector1.y,0);
+
+    glm::vec3 offset = glm::normalize(glm::cross(vector1,vector2));
     glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
     temp2.z = 0;
 
