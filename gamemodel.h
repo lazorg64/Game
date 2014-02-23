@@ -5,6 +5,13 @@
 #include <buildings/smallhouse.h>
 #include <buildings/factory.h>
 #include <buildings/bar.h>
+#include <buildings/hospital.h>
+#include <buildings/clothing.h>
+#include <buildings/firehouse.h>
+#include <buildings/leisure.h>
+#include <buildings/office.h>
+#include <buildings/police.h>
+#include <buildings/store.h>
 #include <vector>
 
 using namespace std;

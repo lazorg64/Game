@@ -26,6 +26,18 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_11_clicked();
+
 signals:
      void selectedBuilding(std::string input);
 

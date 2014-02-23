@@ -45,3 +45,39 @@ void select_building_widget::on_pushButton_4_clicked()
     emit selectedBuilding("bar");
     this->close();
 }
+
+void select_building_widget::on_pushButton_12_clicked()
+{
+    emit selectedBuilding("clothing");
+    this->close();
+}
+
+void select_building_widget::on_pushButton_7_clicked()
+{
+    emit selectedBuilding("store");
+    this->close();
+}
+
+void select_building_widget::on_pushButton_8_clicked()
+{
+    emit selectedBuilding("leisure");
+    this->close();
+}
+
+void select_building_widget::on_pushButton_10_clicked()
+{
+    emit selectedBuilding("police");
+    this->close();
+}
+
+void select_building_widget::on_pushButton_9_clicked()
+{
+    emit selectedBuilding("firehouse");
+    this->close();
+}
+
+void select_building_widget::on_pushButton_11_clicked()
+{
+    emit selectedBuilding("office");
+    this->close();
+}

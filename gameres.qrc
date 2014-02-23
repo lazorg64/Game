@@ -18,6 +18,17 @@
         <file>arrow2.png</file>
         <file>small_house.jpg</file>
         <file>factory.jpg</file>
+        <file>cloth.jpg</file>
+        <file>cloth2.jpg</file>
+        <file>bar.jpg</file>
+        <file>hospital1.jpg</file>
+        <file>hospital2.jpg</file>
+        <file>office.jpg</file>
+        <file>store2.jpg</file>
+        <file>store.jpg</file>
+        <file>Leisure.jpg</file>
+        <file>police.jpg</file>
+        <file>police2.jpg</file>
     </qresource>
     <qresource prefix="/shaders">
         <file>vertex.vert</file>

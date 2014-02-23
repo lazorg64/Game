@@ -292,6 +292,20 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
                 model->buildings.push_back(new Factory((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="bar")
                 model->buildings.push_back(new Bar((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="hospital")
+                model->buildings.push_back(new Hospital((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="clothing")
+                model->buildings.push_back(new Clothing((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="store")
+                model->buildings.push_back(new Store((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="leisure")
+                model->buildings.push_back(new Leisure((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="police")
+                model->buildings.push_back(new Police((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="firehouse")
+                model->buildings.push_back(new Firehouse((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="office")
+                model->buildings.push_back(new Office((int)round(coord.x),(int)round(coord.y)));
             else
             {
 
