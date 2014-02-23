@@ -9,10 +9,11 @@ class params
 {
     QFile * sfile;
     bool fs;
-
+    int resolution;
 public:
     params();
     bool isFullscreen();
+    int getResolution();
     void setDefault();
     void getSettings();
 };

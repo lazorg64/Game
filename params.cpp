@@ -15,6 +15,10 @@ params::params()
     }
 }
 
+int params::getResolution()
+{
+    return resolution;
+}
 bool params::isFullscreen()
 {
     return fs;
@@ -23,6 +27,7 @@ bool params::isFullscreen()
 void params::setDefault()
 {
     fs = true;
+    resolution = 0;
 }
 
 void params::getSettings()

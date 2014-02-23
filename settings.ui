@@ -80,8 +80,33 @@
      </rect>
     </property>
     <property name="currentText">
-     <string/>
+     <string>800x600</string>
     </property>
+    <item>
+     <property name="text">
+      <string>800x600</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1024x768</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1280x960</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1400x1050</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1600x1200</string>
+     </property>
+    </item>
    </widget>
   </widget>
  </widget>
