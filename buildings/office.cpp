@@ -1,19 +1,19 @@
-#include "smallhouse.h"
+#include "office.h"
 
-SmallHouse::SmallHouse(int x,int y):building(x,y)
+Office::Office(int x,int y):building(x,y)
 {
     tex = new texture_buffer();
-    tex->putTexture(new texture(new QImage(":/textures/small_house.jpg"),"wall"));
+    tex->putTexture(new texture(new QImage(":/textures/office.jpg"),"wall"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
 
 }
 
-void SmallHouse::draw()
+void Office::draw()
 {
     float x,y;
     x=posx;
     y=posy;
-    float size = 0.40f;
+    float size = 0.39f;
     glm::vec3 a(x+size,y+size,0);
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);

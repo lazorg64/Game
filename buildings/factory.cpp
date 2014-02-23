@@ -13,12 +13,12 @@ void Factory::draw()
     float x,y;
     x=posx;
     y=posy;
-    float size = 0.3f;
+    float size = 0.4f;
     glm::vec3 a(x+size,y+size,0);
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
-    float height = 0.7f;
+    float height = 1.3f;
     glm::vec3 as(x+size,y+size,height);
     glm::vec3 bs(x-size,y+size,height);
     glm::vec3 cs(x-size,y-size,height);

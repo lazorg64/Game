@@ -27,7 +27,14 @@ SOURCES += main.cpp\
     buildings/smallhouse.cpp \
     gamemenu.cpp \
     buildings/factory.cpp \
-    buildings/bar.cpp
+    buildings/bar.cpp \
+    buildings/hospital.cpp \
+    buildings/clothing.cpp \
+    buildings/store.cpp \
+    buildings/leisure.cpp \
+    buildings/police.cpp \
+    buildings/firehouse.cpp \
+    buildings/office.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -43,7 +50,14 @@ HEADERS  += mainwindow.h \
     buildings/smallhouse.h \
     gamemenu.h \
     buildings/factory.h \
-    buildings/bar.h
+    buildings/bar.h \
+    buildings/hospital.h \
+    buildings/clothing.h \
+    buildings/store.h \
+    buildings/leisure.h \
+    buildings/police.h \
+    buildings/firehouse.h \
+    buildings/office.h
 
 FORMS    += mainwindow.ui \
     settings.ui \

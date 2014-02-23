@@ -1,24 +1,25 @@
-#include "smallhouse.h"
+#include "firehouse.h"
 
-SmallHouse::SmallHouse(int x,int y):building(x,y)
+
+Firehouse::Firehouse(int x,int y):building(x,y)
 {
     tex = new texture_buffer();
-    tex->putTexture(new texture(new QImage(":/textures/small_house.jpg"),"wall"));
-    tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
+    tex->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"wall"));
+    tex->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"roof"));
 
 }
 
-void SmallHouse::draw()
+void Firehouse::draw()
 {
     float x,y;
     x=posx;
     y=posy;
-    float size = 0.40f;
+    float size = 0.38f;
     glm::vec3 a(x+size,y+size,0);
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
-    float height = 1.9f;
+    float height = 1.4f;
     glm::vec3 as(x+size,y+size,height);
     glm::vec3 bs(x-size,y+size,height);
     glm::vec3 cs(x-size,y-size,height);
