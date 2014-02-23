@@ -44,6 +44,12 @@ protected:
     void initializeGL();
     void paintGL();
     void resizeGL(int width, int height);
+    void setupShaders();
+    void setupCamera();
+    void loadTextures();
+
+
+
     void setMatrix();
 
     void draw();

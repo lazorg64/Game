@@ -8,9 +8,7 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     cam_offset = glm::vec3(0,0,0);
     cursor = glm::vec3(0,0,0);
     default_campos = glm::vec3(6,6,6);
-    this->setMouseTracking(true);
     currentBuilding = "none";
-
 }
 
 void OpenGLWidget::setState(string *input)
@@ -21,7 +19,6 @@ void OpenGLWidget::setModel(gamemodel *mod)
 {
     model = mod;
 }
-
 void OpenGLWidget::setCurrentBuilding(string input)
 {
     currentBuilding = input;
@@ -41,22 +38,38 @@ void OpenGLWidget::initializeGL()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
+
+    setupShaders();
+    setupCamera();
+    loadTextures();
+
+
+
+    model->buildings.push_back(new CityHall(0,0));
+
+
+    glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+}
+
+void OpenGLWidget::setupShaders()
+{
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/vertex.vert");
     m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/frag.frag");
     m_program->link();
     m_program->bind();
+}
 
-
-
-    Proj = glm::perspective(40.0f, 1.0f, 0.1f, 100.0f);
+void OpenGLWidget::setupCamera()
+{
+    Proj = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
     View = glm::lookAt(default_campos,glm::vec3(0,0,0),glm::vec3(0,0,1));
     ModelMatrix = glm::mat4(1.0f);
-
-
     setMatrix();
+}
 
-    srand(125);
+void OpenGLWidget::loadTextures()
+{
     glEnable(GL_TEXTURE_2D);
     textures = new texture_buffer();
     textures->putTexture(new texture(new QImage(":/textures/beton.jpg"),"beton"));
@@ -65,23 +78,15 @@ void OpenGLWidget::initializeGL()
     textures->putTexture(new texture(new QImage(":/textures/road.jpg"),"road"));
     textures->putTexture(new texture(new QImage(":/textures/arrow2.png"),"arrow"));
     glBindTexture(GL_TEXTURE_2D, textures->getTexture("beton"));
-
-
-    model->buildings.push_back(new CityHall(0,0));
-
-
-    glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-
-
 }
+
+
 
 void OpenGLWidget::setMatrix()
 {
     glm::mat4 MVP = Proj * View * ModelMatrix;
-
     float *fM = glm::value_ptr(MVP);
     QMatrix4x4 QMVP(fM,4,4);
-
     int loc = m_program->uniformLocation("qt_ModelViewProjectionMatrix");
     m_program->setUniformValue(loc,QMVP);
 }
@@ -122,9 +127,9 @@ void OpenGLWidget::paintGL()
 
 void OpenGLWidget::resizeGL(int width, int height)
 {
-
     glViewport(0,0,width,height);
-
+    Proj = glm::perspective(45.0f, (float)width/(float)height, 0.1f, 100.0f);
+    setMatrix();
 }
 
 void OpenGLWidget::draw()
