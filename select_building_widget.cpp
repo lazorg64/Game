@@ -82,3 +82,8 @@ void select_building_widget::on_pushButton_11_clicked()
     this->close();
 }
 
+void select_building_widget::on_pushButton_6_clicked()
+{
+this->close();
+}
+
