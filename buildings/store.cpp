@@ -23,7 +23,7 @@ void Store::draw()
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
     float size2 = 0.4f;
-    float height = 0.6f;
+    float height = 0.3f;
     glm::vec3 as(x+size2,y+size2,height);
     glm::vec3 bs(x-size2,y+size2,height);
     glm::vec3 cs(x-size2,y-size2,height);
