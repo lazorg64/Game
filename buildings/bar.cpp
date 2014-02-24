@@ -18,7 +18,7 @@ void Bar::draw()
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
-    float height = 0.5f;
+    float height = 0.25f;
     glm::vec3 as(x+size,y+size,height);
     glm::vec3 bs(x-size,y+size,height);
     glm::vec3 cs(x-size,y-size,height);

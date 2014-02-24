@@ -21,7 +21,6 @@ class gamemodel
 
 public:
     int money;
-    gamemodel *gmodel;
     vector<building*> buildings;
     building * selectBuildingByPos(int x,int y);
     gamemodel();

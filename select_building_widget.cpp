@@ -81,3 +81,4 @@ void select_building_widget::on_pushButton_11_clicked()
     emit selectedBuilding("office");
     this->close();
 }
+
