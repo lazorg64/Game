@@ -2,11 +2,13 @@
 #include "ui_gamewindow.h"
 #include "select_building_widget.h"
 #include "gamemenu.h"
-
+#include "mthread.h"
 gamewindow::gamewindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::gamewindow)
 {
+    MThread *t=new MThread();
+    t->start();
     ui->setupUi(this);
     model = new gamemodel();
     ui->gamewidget->setModel(model);
