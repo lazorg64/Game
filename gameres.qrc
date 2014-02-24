@@ -3,6 +3,7 @@
         <file>package_games.png</file>
         <file>city_skyline.png</file>
         <file>000005382478.jpg</file>
+        <file>road.jpg</file>
     </qresource>
     <qresource prefix="/textures">
         <file>brick_green.gif</file>

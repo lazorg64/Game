@@ -744,7 +744,7 @@ QPushButton:pressed
 }</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Road</string>
       </property>
      </widget>
     </widget>

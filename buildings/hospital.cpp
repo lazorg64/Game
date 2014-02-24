@@ -17,12 +17,12 @@ void Hospital::draw()
     float x,y;
     x=posx;
     y=posy;
-    float size = 0.6f;
+    float size = 0.53f;
     glm::vec3 a(x+size,y+size,0);
     glm::vec3 b(x-size,y+size,0);
     glm::vec3 c(x-size,y-size,0);
     glm::vec3 d(x+size,y-size,0);
-    float size2 = 0.6f;
+    float size2 = 0.53f;
     float height = 1.2f;
     glm::vec3 as(x+size2,y+size2,height);
     glm::vec3 bs(x-size2,y+size2,height);

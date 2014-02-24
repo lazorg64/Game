@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     buildings/police.cpp \
     buildings/firehouse.cpp \
     buildings/office.cpp \
-    mthread.cpp
+    buildings/road.cpp \
+    xernyathread.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -59,7 +60,8 @@ HEADERS  += mainwindow.h \
     buildings/police.h \
     buildings/firehouse.h \
     buildings/office.h \
-    mthread.h
+    buildings/road.h \
+    xernyathread.h
 
 FORMS    += mainwindow.ui \
     settings.ui \

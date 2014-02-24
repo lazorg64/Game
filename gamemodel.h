@@ -12,6 +12,7 @@
 #include <buildings/office.h>
 #include <buildings/police.h>
 #include <buildings/store.h>
+#include<buildings/road.h>
 #include <vector>
 
 using namespace std;

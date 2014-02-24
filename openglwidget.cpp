@@ -306,6 +306,8 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
                 model->buildings.push_back(new Firehouse((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="office")
                 model->buildings.push_back(new Office((int)round(coord.x),(int)round(coord.y)));
+            else if(currentBuilding=="road")
+                model->buildings.push_back(new Road((int)round(coord.x),(int)round(coord.y)));
             else
             {
 
