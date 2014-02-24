@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     buildings/leisure.cpp \
     buildings/police.cpp \
     buildings/firehouse.cpp \
-    buildings/office.cpp
+    buildings/office.cpp \
+    mthread.cpp
 
 HEADERS  += mainwindow.h \
     settings.h \
@@ -57,7 +58,8 @@ HEADERS  += mainwindow.h \
     buildings/leisure.h \
     buildings/police.h \
     buildings/firehouse.h \
-    buildings/office.h
+    buildings/office.h \
+    mthread.h
 
 FORMS    += mainwindow.ui \
     settings.ui \
