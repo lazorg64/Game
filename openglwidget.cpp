@@ -16,6 +16,10 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     camRight = false;
 
 
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(10);
+
 }
 
 void OpenGLWidget::setState(string *input)
@@ -137,6 +141,39 @@ void OpenGLWidget::resizeGL(int width, int height)
     glViewport(0,0,width,height);
     Proj = glm::perspective(45.0f, (float)width/(float)height, 0.1f, 100.0f);
     setMatrix();
+}
+
+void OpenGLWidget::moveCam()
+{
+    glm::vec3 eye = default_campos;
+
+    glm::vec3 eye2 = eye;
+    eye2.z=0;
+    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+    glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
+    temp2.z = 0;
+
+    if(camLeft)
+    {
+        cam_offset+=offset;
+        default_campos+=offset;
+    }
+    else if(camRight)
+    {
+        cam_offset-=offset;
+        default_campos-=offset;
+    }
+
+    if(camUp)
+    {
+        cam_offset-=temp2;
+        default_campos-=temp2;
+    }
+    else if(camDown)
+    {
+        cam_offset+=temp2;
+        default_campos+=temp2;
+    }
 }
 
 void OpenGLWidget::draw()
@@ -385,8 +422,40 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* pe)
 
 
 
+    if(x>=0.9f)
+    {
+        camLeft = true;
+        camRight = false;
+    }
+    else if(x<=-0.9f)
+    {
+        camRight = true;
+        camLeft = false;
+    }
+    else
+    {
+        camRight = false;
+        camLeft = false;
+    }
+
+    if(y>=0.9f)
+    {
+        camUp = true;
+        camDown = false;
+    }
+    else if(y<=-0.9f)
+    {
+        camDown = true;
+        camUp = false;
+    }
+    else
+    {
+        camDown = false;
+        camUp = false;
+    }
 
 
+    cout << "Up:"<<camUp<<"Down:"<<camDown<<endl;
 
     float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
 

@@ -11,6 +11,8 @@
 #include <QtGui/QOpenGLShaderProgram>
 #include <QMouseEvent>
 #include <QImage>
+#include <QTime>
+#include <QTimer>
 
 using namespace std;
 
@@ -63,6 +65,8 @@ protected:
     void drawGrid();
     void drawCursor();
 
+
+    void moveCam();
     void inter(glm::vec3 input);
 
     void mousePressEvent(QMouseEvent* pe);
