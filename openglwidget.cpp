@@ -15,10 +15,11 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     camLeft = false;
     camRight = false;
 
+    zoom = 1;
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(10);
+    timer->start(1);
 
 }
 
@@ -133,7 +134,9 @@ void OpenGLWidget::paintGL()
     glRotatef(30,1,0,1);
 
     glColor4f(0,0,0,0);
+    moveCam();
     draw();
+
 }
 
 void OpenGLWidget::resizeGL(int width, int height)
@@ -145,13 +148,16 @@ void OpenGLWidget::resizeGL(int width, int height)
 
 void OpenGLWidget::moveCam()
 {
-    glm::vec3 eye = default_campos;
-
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
+    glm::vec3 vector1 = default_campos-cam_offset;
+    glm::vec3 vector2 = glm::vec3(vector1.x,vector1.y,0);
+    glm::vec3 offset = glm::normalize(glm::cross(vector1,vector2));
     glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
     temp2.z = 0;
+
+    float scale = 0.09;
+
+    offset*=scale;
+    temp2*=scale;
 
     if(camLeft)
     {
@@ -174,12 +180,15 @@ void OpenGLWidget::moveCam()
         cam_offset+=temp2;
         default_campos+=temp2;
     }
+    View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
+    setMatrix();
+
 }
 
 void OpenGLWidget::draw()
 {
     glBindTexture(GL_TEXTURE_2D, textures->getTexture("grad"));
-    drawAxis();
+    //drawAxis();
     drawGrid();
 
     foreach (building * element, model->buildings) {
@@ -226,15 +235,15 @@ void OpenGLWidget::drawGrid()
 {
 
     glBegin(GL_LINES);
-        for(float i=-100;i<100;i+=1)
+        for(float i=-30;i<30;i+=1)
         {
-            glVertex3f( i,  -100,  0.01f);
-            glVertex3f( i,  100,  0.01f);
+            glVertex3f( i,  -30,  0.01f);
+            glVertex3f( i,  30,  0.01f);
         }
-        for(float i=-100;i<100;i+=1)
+        for(float i=-30;i<30;i+=1)
         {
-            glVertex3f( -100,  i,  0.01f);
-            glVertex3f(  100,  i,  0.01f);
+            glVertex3f( -30,  i,  0.01f);
+            glVertex3f(  30,  i,  0.01f);
         }
     glEnd();
 
@@ -292,37 +301,14 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
     glm::vec3 point = glm::vec3(0,0,0);
     glm::vec3 eye = default_campos;
 
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::normalize(glm::cross(eye,eye2));
-    glm::vec3 temp2 = glm::normalize(default_campos - cam_offset);
-    temp2.z = 0;
 
-    if(x>=0.9f)
-    {
-        cam_offset+=offset;
-        default_campos+=offset;
-    }
-    else if(x<=-0.9f)
-    {
-        cam_offset-=offset;
-        default_campos-=offset;
-    }
+    float t = glm::dot((point - default_campos ),norm)/glm::dot(ray_wor,norm);
+    glm::vec3 coord= default_campos + t*ray_wor;
+    glm::vec4 temp2 = glm::inverse (ModelMatrix) * glm::vec4(coord[0],coord[1],coord[2],0.0f);
 
-    if(y>=0.9f)
-    {
-        cam_offset-=temp2;
-        default_campos-=temp2;
-    }
-    else if(y<=-0.9f)
-    {
-        cam_offset+=temp2;
-        default_campos+=temp2;
-    }
-
-    float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
-    glm::vec3 coord;
-    coord = eye + t*ray_wor;
+    cursor[0] = temp2[0];
+    cursor[1] = temp2[1];
+    cursor[2] = temp2[2];
 
     if(pe->button()==Qt::LeftButton)
     {
@@ -392,33 +378,32 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* pe)
     float y=1.0f - (2.0f *ptrMouse.y())/(float)height();
     float z = 0;
 
-    //cout << "move" <<x << " "<< y<<endl;
-
-
     glm::vec3 ray_nds = glm::vec3 (x, y, z);
 
     glm::vec4 ray_clip = glm::vec4 (ray_nds.x,ray_nds.y, -1.0, 1.0);
 
     glm::vec4 ray_eye = glm::inverse (Proj) * ray_clip;
 
+
+
     ray_eye = glm::vec4 (ray_eye.x,ray_eye.y, -1.0, 0.0);
 
     glm::vec4 temp = (glm::inverse (View) * ray_eye);
+    //temp = (glm::inverse (ModelMatrix) * temp);
+
     glm::vec3 ray_wor;
     ray_wor[0] = temp[0];
     ray_wor[1] = temp[1];
     ray_wor[2] = temp[2];
 
+
     ray_wor = glm::normalize (ray_wor);
+
+
 
 
     glm::vec3 norm = glm::vec3(0,0,1);
     glm::vec3 point = glm::vec3(0,0,0);
-    glm::vec3 eye = default_campos;
-
-    glm::vec3 eye2 = eye;
-    eye2.z=0;
-    glm::vec3 offset = glm::cross(eye,eye2);
 
 
 
@@ -454,18 +439,14 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* pe)
         camUp = false;
     }
 
+    float t = glm::dot((point - default_campos ),norm)/glm::dot(ray_wor,norm);
 
-    cout << "Up:"<<camUp<<"Down:"<<camDown<<endl;
+    glm::vec3 coord= default_campos + t*ray_wor;
+    glm::vec4 temp2 = glm::inverse (ModelMatrix) * glm::vec4(coord[0],coord[1],coord[2],0.0f);
 
-    float t = glm::dot((point - eye ),norm)/glm::dot(ray_wor,norm);
-
-    glm::vec3 coord;
-    coord = eye + t*ray_wor;
-    cursor = coord;
-
-    View = glm::lookAt(default_campos,cam_offset,glm::vec3(0,0,1));
-
-    setMatrix();
+    cursor[0] = temp2[0];
+    cursor[1] = temp2[1];
+    cursor[2] = temp2[2];
     updateGL();
 }
 
@@ -477,7 +458,6 @@ void OpenGLWidget::mouseReleaseEvent(QMouseEvent *)
 
 void OpenGLWidget::keyPressEvent(QKeyEvent* pe)
 {
-    cout << "KEY" <<endl;
     glm::vec3 eye = default_campos;
     glm::vec3 eye2 = eye;
     eye2.z=0;
@@ -511,4 +491,18 @@ void OpenGLWidget::keyPressEvent(QKeyEvent* pe)
     updateGL();
 }
 
+void OpenGLWidget::wheelEvent(QWheelEvent *pe)
+{
+    if(pe->delta()>0)
+    {
+        zoom+=0.05;
+    }
+    else
+    {
+        zoom-=0.05;
+    }
+
+    ModelMatrix = glm::scale(glm::mat4(1.0f),glm::vec3(zoom));
+    setMatrix();
+}
 

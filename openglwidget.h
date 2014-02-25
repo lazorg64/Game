@@ -7,6 +7,8 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 #include <QGLShader>
 #include <QtGui/QOpenGLShaderProgram>
 #include <QMouseEvent>
@@ -34,6 +36,8 @@ protected:
     bool camDown;
     bool camLeft;
     bool camRight;
+
+    float zoom;
 
 
     std::string currentBuilding;
@@ -69,10 +73,11 @@ protected:
     void moveCam();
     void inter(glm::vec3 input);
 
-    void mousePressEvent(QMouseEvent* pe);
-    void mouseReleaseEvent(QMouseEvent* pe);
-    void mouseMoveEvent(QMouseEvent* pe);
-    void keyPressEvent(QKeyEvent* pe);
+    void mousePressEvent(QMouseEvent * pe);
+    void mouseReleaseEvent(QMouseEvent * pe);
+    void mouseMoveEvent(QMouseEvent * pe);
+    void keyPressEvent(QKeyEvent * pe);
+    void wheelEvent(QWheelEvent * pe);
 };
 
 #endif // OPENGLWIDGET_H
