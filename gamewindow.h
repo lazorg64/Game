@@ -18,12 +18,12 @@ public:
     ~gamewindow();
     std::string * getState();
     void setState(std::string * input);
-
 private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void selectBuilding(std::string input);
-
+public slots:
+    void setBalance(float input);
 
 private:
     Ui::gamewindow *ui;

@@ -5,7 +5,7 @@ Factory::Factory(int x,int y):building(x,y)
     tex = new texture_buffer();
     tex->putTexture(new texture(new QImage(":/textures/factory.jpg"),"wall"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
-
+    money=4;
 }
 
 void Factory::draw()

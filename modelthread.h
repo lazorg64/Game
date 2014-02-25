@@ -7,8 +7,11 @@ class ModelThread : public QThread
 {
     Q_OBJECT
 public:
-    ModelThread(gamemodel *ptr);
+    ModelThread(gamemodel *i);
+    gamemodel *ptr;
     void run();
+signals:
+    void setBalance(float input);
 };
 
 #endif // MODELTHREAD_H

@@ -9,7 +9,6 @@ gamemodel::gamemodel()
 
 
 
-
 }
 
 
@@ -23,4 +22,9 @@ building * gamemodel::selectBuildingByPos(int x, int y)
         }
     }
     return 0;
+}
+building* gamemodel::addBuilding(building *input)
+{
+    if(selectBuildingByPos(input->getX(),input->getY())==0)
+    buildings.push_back(input);
 }

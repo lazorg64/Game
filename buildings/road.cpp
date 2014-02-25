@@ -4,7 +4,7 @@ Road::Road(int x,int y):building(x,y)
 {
     tex = new texture_buffer();
     tex->putTexture(new texture(new QImage(":/textures/road.jpg"),"roof"));
-
+    money=1;
 }
 
 void Road::draw()

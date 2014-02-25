@@ -87,10 +87,3 @@ void select_building_widget::on_pushButton_6_clicked()
     emit selectedBuilding("road");
     this->close();
 }
-
-
-void select_building_widget::on_pushButton_13_clicked()
-{
-    emit selectedBuilding("road");
-    this->close();
-}

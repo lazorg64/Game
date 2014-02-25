@@ -7,9 +7,7 @@ Police::Police(int x,int y):building(x,y)
     tex->putTexture(new texture(new QImage(":/textures/police2.jpg"),"front"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
     glBindTexture(GL_TEXTURE_2D, tex->getTexture("wall"));
-
-
-
+    money=-6;
 }
 
 void Police::draw()

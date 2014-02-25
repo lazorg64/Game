@@ -6,7 +6,7 @@ Firehouse::Firehouse(int x,int y):building(x,y)
     tex = new texture_buffer();
     tex->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"wall"));
     tex->putTexture(new texture(new QImage(":/textures/brick_green.gif"),"roof"));
-
+    money=-6;
 }
 
 void Firehouse::draw()

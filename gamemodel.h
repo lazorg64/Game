@@ -12,16 +12,18 @@
 #include <buildings/office.h>
 #include <buildings/police.h>
 #include <buildings/store.h>
-#include<buildings/road.h>
+#include <buildings/road.h>
 #include <vector>
-
+#include <building.h>
 using namespace std;
 
 class gamemodel
 {
 
 public:
-    int money;
+    float balance;
+    building* addBuilding(building *input);
+    building* getBuilding(int x,int y);
     gamemodel *gmodel;
     vector<building*> buildings;
     building * selectBuildingByPos(int x,int y);

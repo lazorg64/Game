@@ -5,7 +5,7 @@ Office::Office(int x,int y):building(x,y)
     tex = new texture_buffer();
     tex->putTexture(new texture(new QImage(":/textures/office.jpg"),"wall"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
-
+    money=5;
 }
 
 void Office::draw()

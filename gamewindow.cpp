@@ -15,8 +15,12 @@ gamewindow::gamewindow(QWidget *parent) :
     ui->gamewidget->setFocus();
     ModelThread *t=new ModelThread(model);
     t->start();
+    connect(t,SIGNAL(setBalance(float)),this,SLOT(setBalance(float)));
 }
-
+void gamewindow::setBalance(float input)
+{
+    ui->label->setText(QString::number(input));
+}
 std::string * gamewindow::getState()
 {
     return state;

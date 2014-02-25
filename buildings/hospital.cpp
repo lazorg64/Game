@@ -7,9 +7,7 @@ Hospital::Hospital(int x,int y):building(x,y)
     tex->putTexture(new texture(new QImage(":/textures/hospital1.jpg"),"front"));
     tex->putTexture(new texture(new QImage(":/textures/roof.jpg"),"roof"));
     glBindTexture(GL_TEXTURE_2D, tex->getTexture("wall"));
-
-
-
+    money=-6;
 }
 
 void Hospital::draw()

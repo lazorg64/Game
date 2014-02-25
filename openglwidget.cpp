@@ -285,29 +285,29 @@ void OpenGLWidget::mousePressEvent(QMouseEvent *pe)
         if(*(state)=="build")
         {
             if(currentBuilding=="cityhall")
-                model->buildings.push_back(new CityHall((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new CityHall((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="smallhouse")
-                model->buildings.push_back(new SmallHouse((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new SmallHouse((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="factory")
-                model->buildings.push_back(new Factory((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Factory((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="bar")
-                model->buildings.push_back(new Bar((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Bar((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="hospital")
-                model->buildings.push_back(new Hospital((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Hospital((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="clothing")
-                model->buildings.push_back(new Clothing((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Clothing((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="store")
-                model->buildings.push_back(new Store((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Store((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="leisure")
-                model->buildings.push_back(new Leisure((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Leisure((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="police")
-                model->buildings.push_back(new Police((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Police((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="firehouse")
-                model->buildings.push_back(new Firehouse((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Firehouse((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="office")
-                model->buildings.push_back(new Office((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Office((int)round(coord.x),(int)round(coord.y)));
             else if(currentBuilding=="road")
-                model->buildings.push_back(new Road((int)round(coord.x),(int)round(coord.y)));
+                model->addBuilding(new Road((int)round(coord.x),(int)round(coord.y)));
             else
             {
 
