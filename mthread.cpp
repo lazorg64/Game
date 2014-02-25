@@ -1,12 +1,12 @@
 #include "mthread.h"
-//MThread::MThread(int i)
-//{
+MThread::MThread()
+{
 
 
-//}
+}
 
-//void MThread:: run()
-//{
+void MThread:: run()
+{
 
 
-//}
+}
