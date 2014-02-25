@@ -9,6 +9,13 @@ OpenGLWidget::OpenGLWidget(QWidget *parent) :
     cursor = glm::vec3(0,0,0);
     default_campos = glm::vec3(6,6,6);
     currentBuilding = "none";
+
+    camUp = false;
+    camDown = false;
+    camLeft = false;
+    camRight = false;
+
+
 }
 
 void OpenGLWidget::setState(string *input)

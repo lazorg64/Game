@@ -12,6 +12,7 @@ public:
     void run();
 signals:
     void setBalance(float input);
+    void setIncome(float input);
 };
 
 #endif // MODELTHREAD_H

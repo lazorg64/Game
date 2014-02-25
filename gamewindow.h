@@ -24,7 +24,7 @@ private slots:
     void selectBuilding(std::string input);
 public slots:
     void setBalance(float input);
-
+    void setIncome(float input);
 private:
     Ui::gamewindow *ui;
 };

@@ -28,6 +28,12 @@ public slots:
 
 
 protected:
+    bool camUp;
+    bool camDown;
+    bool camLeft;
+    bool camRight;
+
+
     std::string currentBuilding;
     texture_buffer * textures;
     glm::vec3 rot;

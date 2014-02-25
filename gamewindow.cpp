@@ -14,13 +14,25 @@ gamewindow::gamewindow(QWidget *parent) :
     ui->gamewidget->setState(state);
     ui->gamewidget->setFocus();
     ModelThread *t=new ModelThread(model);
-    t->start();
+
     connect(t,SIGNAL(setBalance(float)),this,SLOT(setBalance(float)));
+    connect(t,SIGNAL(setIncome(float)),this,SLOT(setIncome(float)));
+
+    t->start();
 }
 void gamewindow::setBalance(float input)
 {
-    ui->label->setText(QString::number(input));
+    QString str = "Budget: ";
+    str+=QString::number(input);
+    ui->label->setText(str);
 }
+void gamewindow::setIncome(float input)
+{
+    QString str = "Income: ";
+    str+=QString::number(input);
+    ui->label_2->setText(str);
+}
+
 std::string * gamewindow::getState()
 {
     return state;

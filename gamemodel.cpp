@@ -7,7 +7,7 @@ gamemodel::gamemodel()
    // tex_buff->putTexture(new texture(new QImage(":/textures/brick_purple.gif"),"purple"));
     //tex_buff->putTexture(new texture(new QImage(":/textures/brick_white.gif"),"white"));
 
-
+    balance = 10000;
 
 }
 

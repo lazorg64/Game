@@ -10,11 +10,15 @@ void ModelThread::run()
 {
     while(true)
     {
+        float income = 0;
         foreach(building *cur,ptr->buildings)
         {
-            ptr->balance+=cur->getMoney();
+            income+=cur->getMoney();
         }
+        ptr->balance += income;
+
         emit setBalance(ptr->balance);
-        sleep(60);
+        emit setIncome(income);
+        sleep(1);
     }
 }
