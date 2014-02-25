@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "gamemodel.h"
-#include "xernyathread.h"
+#include "modelthread.h"
 namespace Ui {
 class gamewindow;
 }
@@ -12,7 +12,6 @@ class gamewindow : public QWidget
 {
     Q_OBJECT
     gamemodel * model;
-    XernyaThread *t;
     std::string * state;
 public:
     explicit gamewindow(QWidget *parent = 0);
